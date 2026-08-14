@@ -119,6 +119,38 @@
             text-align: center;
         }
 
+        /* حقل الاسم الجديد */
+        .name-field-container {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .name-label {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .name-input {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            outline: none;
+            width: 60%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        .name-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px rgba(46, 125, 50, 0.4);
+        }
+
         .btn {
             background-color: #25D366;
             color: white;
@@ -156,6 +188,12 @@
     <div id="menu-container"></div>
 
     <div class="actions-panel">
+        <!-- حقل الاسم المطلوب -->
+        <div class="name-field-container">
+            <label for="customer-name" class="name-label">الاسم:</label>
+            <input type="text" id="customer-name" class="name-input" placeholder="ادخلي اسمك هنا">
+        </div>
+
         <div>المختارات: <span id="selected-count" class="count-badge">0</span></div>
         <div style="margin-top: 10px;">
             <button class="btn" onclick="sendWhatsApp()">إرسال عبر واتساب 💬</button>
@@ -239,7 +277,15 @@
 
         function getOrderText() {
             if (selectedItems.size === 0) return '';
-            let text = "مرحباً، أود طلب البهارات التالية:\n";
+            
+            const nameInput = document.getElementById('customer-name').value.trim();
+            let text = "";
+            
+            if (nameInput) {
+                text += `الاسم: ${nameInput}\n`;
+            }
+            
+            text += "مرحباً، أود طلب البهارات التالية:\n";
             Array.from(selectedItems).forEach((item, index) => {
                 text += `${index + 1}. ${item}\n`;
             });
