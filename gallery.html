@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الصور</title>
+    <style>
+        :root {
+            --primary-color: #5c2c16;
+            --bg-color: #f4ece1;
+            --card-bg: #fffbf5;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 15px;
+            direction: rtl;
+        }
+
+        .header {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-card .caption {
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>معرض الصور 📸</h1>
+        <a href="index.html" class="nav-btn">➡️ العودة إلى قائمة البهارات</a>
+    </div>
+
+    <div class="gallery-grid" id="gallery-container"></div>
+
+    <script>
+        // Place your separate image URLs and titles here
+        const galleryItems = [
+            { title: "صورة 1", image: "https://via.placeholder.com/300" },
+            { title: "صورة 2", image: "https://via.placeholder.com/300" },
+            { title: "صورة 3", image: "https://via.placeholder.com/300" }
+        ];
+
+        function renderGallery() {
+            const container = document.getElementById('gallery-container');
+            galleryItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="caption">${item.title}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        renderGallery();
+    </script>
+</body>
+</html>
